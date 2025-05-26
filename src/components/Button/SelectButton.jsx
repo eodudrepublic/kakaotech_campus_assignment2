@@ -1,18 +1,26 @@
+// 목록 카드에서 '추가' 역할 – 중복/초과 시 alert
 import styled from "styled-components";
 import Button from "./Button";
 import { SELECTABLE_POKEMON_NUM } from "../../constants/constant";
 
-// REQ-5 (알림)
-
 const SelectButton = ({ pokemon, selected, setSelected }) => {
   const selectHandler = () => {
-    const isMaxSelect = selected.length === SELECTABLE_POKEMON_NUM;
-    const isAlreadySelected = selected.some((selected) => selected.id === pokemon.id);
+    const isMaxSelect = selected.length >= SELECTABLE_POKEMON_NUM;
+    const isAlreadySelected = selected.some(
+      (sel) => sel.id === pokemon.id
+    );
 
-    if (isMaxSelect || isAlreadySelected) {
-      alert("포켓몬은 최대 여섯개까지만 선택할 수 있어요");
+    // 선택 제한 & 중복 방지 메시지 분리 (REQ-5)
+    if (isAlreadySelected) {
+      alert("이미 선택된 포켓몬입니다.");
       return;
     }
+    if (isMaxSelect) {
+      alert("더 이상 선택할 수 없습니다.");
+      return;
+    }
+
+    // 새 배열로 상태 갱신
     setSelected([...selected, pokemon]);
   };
 
@@ -24,6 +32,7 @@ const SelectButton = ({ pokemon, selected, setSelected }) => {
 };
 
 export default SelectButton;
+
 
 const StyledButton = styled(Button)`
   width: 45px;

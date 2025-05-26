@@ -1,3 +1,4 @@
+// 선택된 6마리를 보여주는 영역 – 남은 칸은 빈 Slot
 import Slot from "./Slot";
 import PokemonCard from "../PokemonCard";
 import { SELECTABLE_POKEMON_NUM } from "../../constants/constant";
@@ -7,11 +8,13 @@ const Dashboard = ({ selected, setSelected }) => {
   return (
     <StyledContainer>
       <StyledTitle>나만의 포켓몬</StyledTitle>
+
+      {/* 6칸을 고정으로 렌더링해서, 선택 여부에 따라 Slot <-> Card 토글 */}
       <StyledSlotContainer>
         {Array.from({ length: SELECTABLE_POKEMON_NUM }, (_, i) =>
           selected[i] ? (
             <PokemonCard
-              key={i}
+              key={selected[i].id}
               pokemon={selected[i]}
               type="inDashboard"
               selected={selected}
@@ -19,7 +22,7 @@ const Dashboard = ({ selected, setSelected }) => {
             />
           ) : (
             <Slot key={i} />
-          ),
+          )
         )}
       </StyledSlotContainer>
     </StyledContainer>
@@ -27,6 +30,7 @@ const Dashboard = ({ selected, setSelected }) => {
 };
 
 export default Dashboard;
+
 
 const StyledContainer = styled.div`
   width: 100%;

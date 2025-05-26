@@ -1,3 +1,4 @@
+// 카드 하나 – 리스트/대시보드 두 곳에서 재사용
 import { useNavigate } from "react-router-dom";
 import { getPath } from "../router/index.jsx";
 import SelectButton from "./Button/SelectButton";
@@ -6,35 +7,41 @@ import styled from "styled-components";
 
 const PokemonCard = ({ pokemon, selected, setSelected, type }) => {
   const navigate = useNavigate();
-  const { img_url, korean_name, id } = pokemon;
+  const { img_url, korean_name, id, types } = pokemon;
 
-  const moveDetail = (e, selection) => {
-    if (!e.target.classList.contains("pokemonCard")) return;
-
-    const path = getPath("detail") + `/${selection.id}`;
-    navigate(path);
+  // 카드 바깥 영역 클릭 시 디테일 페이지로 이동
+  const moveDetail = (e) => {
+    if (!e.currentTarget.classList.contains("pokemonCard")) return;
+    navigate(getPath("detail") + `/${id}`);
   };
 
   return (
-    <StyledCard
-      className="pokemonCard"
-      onClick={(e) => {
-        moveDetail(e, pokemon);
-      }}
-    >
-      <img src={img_url} alt={`${korean_name}의 이미지`} />
+    <StyledCard className="pokemonCard" onClick={moveDetail}>
+      <img src={img_url} alt={`${korean_name} 이미지`} />
       <StyledName>{korean_name}</StyledName>
+      {/* REQ-3: 타입 표시 추가 */}
+      <p>{types.join(", ")}</p>
       <p>No. {`${id}`.padStart(3, "0")}</p>
+
       {type === "inSelectList" ? (
-        <SelectButton pokemon={pokemon} selected={selected} setSelected={setSelected} />
+        <SelectButton
+          pokemon={pokemon}
+          selected={selected}
+          setSelected={setSelected}
+        />
       ) : (
-        <RemoveButton pokemon={pokemon} selected={selected} setSelected={setSelected} />
+        <RemoveButton
+          pokemon={pokemon}
+          selected={selected}
+          setSelected={setSelected}
+        />
       )}
     </StyledCard>
   );
 };
 
 export default PokemonCard;
+
 
 const StyledCard = styled.div`
   width: 100%;

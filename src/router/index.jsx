@@ -1,4 +1,4 @@
-// REQ-2 (페이지 라우팅 구현)
+// REQ-2 (페이지 라우팅 구현 : SPA 진입점)
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home";
 import Dex from "@/pages/Dex";
