@@ -2,7 +2,8 @@ import styled from "styled-components";
 import Button from "./Button";
 
 const RemoveButton = ({ pokemon, selected, setSelected }) => {
-  const removeHandler = () => {
+  const removeHandler = (e) => {
+    e.stopPropagation();  
     const removedList = selected.filter((selected) => selected.id !== pokemon.id);
 
     setSelected(removedList);
