@@ -16,7 +16,7 @@ const Dashboard = () => {
         {Array.from({ length: SELECTABLE_POKEMON_NUM }, (_, i) =>
           selected[i] ? (
             <PokemonCard
-              key={selected[i].id}
+              key={i}
               pokemon={selected[i]}
               type="inDashboard"
               selected={selected}

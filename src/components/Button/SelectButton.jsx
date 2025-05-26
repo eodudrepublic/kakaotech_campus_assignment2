@@ -6,7 +6,8 @@ import { useSelectedPokemon } from "../../contexts/SelectedPokemonContext";
 
 const SelectButton = ({ pokemon }) => {
   const { selected, setSelected } = useSelectedPokemon();
-  const selectHandler = () => {
+  const selectHandler = (e) => {
+    e.stopPropagation();
     const isMaxSelect = selected.length >= SELECTABLE_POKEMON_NUM;
     const isAlreadySelected = selected.some(
       (sel) => sel.id === pokemon.id

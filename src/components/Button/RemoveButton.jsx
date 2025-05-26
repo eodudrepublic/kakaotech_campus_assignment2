@@ -4,7 +4,8 @@ import { useSelectedPokemon } from "../../contexts/SelectedPokemonContext";
 
 const RemoveButton = ({ pokemon }) => {
   const { selected, setSelected } = useSelectedPokemon();
-  const removeHandler = () => {
+  const removeHandler = (e) => {
+    e.stopPropagation();
     const removedList = selected.filter((selected) => selected.id !== pokemon.id);
 
     setSelected(removedList);
