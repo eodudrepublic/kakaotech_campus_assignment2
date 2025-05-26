@@ -5,7 +5,7 @@ import SelectButton from "./Button/SelectButton";
 import RemoveButton from "./Button/RemoveButton";
 import styled from "styled-components";
 
-const PokemonCard = ({ pokemon, selected, setSelected, type }) => {
+const PokemonCard = ({ pokemon, type }) => {
   const navigate = useNavigate();
   const { img_url, korean_name, id, types } = pokemon;
 
@@ -26,14 +26,10 @@ const PokemonCard = ({ pokemon, selected, setSelected, type }) => {
       {type === "inSelectList" ? (
         <SelectButton
           pokemon={pokemon}
-          selected={selected}
-          setSelected={setSelected}
         />
       ) : (
         <RemoveButton
           pokemon={pokemon}
-          selected={selected}
-          setSelected={setSelected}
         />
       )}
     </StyledCard>
@@ -45,7 +41,7 @@ export default PokemonCard;
 
 const StyledCard = styled.div`
   width: 100%;
-  height: 210px;
+  height: 260px;
   border-radius: 10px;
   box-shadow: 0 3px 5px var(--grey);
   display: flex;

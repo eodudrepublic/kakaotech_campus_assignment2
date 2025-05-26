@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
+import { useSelectedPokemon } from "../contexts/SelectedPokemonContext";
 
-const PokemonList = ({ pokemonList, selected, setSelected }) => {
+const PokemonList = ({ pokemonList }) => {
+  const { selected, setSelected } = useSelectedPokemon();
   return (
     <StyledList>
       {pokemonList.map((pokemon) => {
@@ -28,7 +30,7 @@ const StyledList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   justify-items: center;
   align-items: center;
-  gap: 40px 20px;
+  gap: 50px 20px;
   padding: 20px;
 
   border-radius: 10px;

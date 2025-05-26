@@ -3,8 +3,10 @@ import Slot from "./Slot";
 import PokemonCard from "../PokemonCard";
 import { SELECTABLE_POKEMON_NUM } from "../../constants/constant";
 import styled from "styled-components";
+import { useSelectedPokemon } from "../../contexts/SelectedPokemonContext";
 
-const Dashboard = ({ selected, setSelected }) => {
+const Dashboard = () => {
+  const { selected, setSelected } = useSelectedPokemon();
   return (
     <StyledContainer>
       <StyledTitle>나만의 포켓몬</StyledTitle>

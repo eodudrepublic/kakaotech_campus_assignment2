@@ -2,8 +2,10 @@
 import styled from "styled-components";
 import Button from "./Button";
 import { SELECTABLE_POKEMON_NUM } from "../../constants/constant";
+import { useSelectedPokemon } from "../../contexts/SelectedPokemonContext";
 
-const SelectButton = ({ pokemon, selected, setSelected }) => {
+const SelectButton = ({ pokemon }) => {
+  const { selected, setSelected } = useSelectedPokemon();
   const selectHandler = () => {
     const isMaxSelect = selected.length >= SELECTABLE_POKEMON_NUM;
     const isAlreadySelected = selected.some(
