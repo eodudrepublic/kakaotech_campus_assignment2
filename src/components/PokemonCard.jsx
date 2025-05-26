@@ -45,7 +45,7 @@ export default PokemonCard;
 
 const StyledCard = styled.div`
   width: 100%;
-  height: 210px;
+  height: 260px;
   border-radius: 10px;
   box-shadow: 0 3px 5px var(--grey);
   display: flex;

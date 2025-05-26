@@ -4,7 +4,12 @@ import Button from "./Button";
 import { SELECTABLE_POKEMON_NUM } from "../../constants/constant";
 
 const SelectButton = ({ pokemon, selected, setSelected }) => {
-  const selectHandler = () => {
+  const selectHandler = (e) => {
+    // 추가 버튼을 눌러도 선택이 안되던 오류 수정
+    e.stopPropagation();   
+
+    // 디버깅용 콘솔 로그그
+    // console.log('selected?', selected, 'setSelected?', setSelected);
     const isMaxSelect = selected.length >= SELECTABLE_POKEMON_NUM;
     const isAlreadySelected = selected.some(
       (sel) => sel.id === pokemon.id
